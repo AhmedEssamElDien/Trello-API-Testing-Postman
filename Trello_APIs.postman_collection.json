@@ -1,0 +1,117 @@
+{
+  "info": {
+    "_postman_id": "83e867da-04e2-414a-a75d-4a5e6b437bd7",
+    "name": "Trello_APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create_Board",
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["var jsonData = pm.response.json();", "", "pm.collectionVariables.set(\"BoardID\", jsonData.id);", "", "", "pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});", "", "", "", "pm.test(\"Response has id field\", function () {", "    pm.expect(jsonData.id).to.be.a('string').and.to.not.be.empty;", "});", "", "", "pm.test(\"Response has name field\", function () {", "    pm.expect(jsonData.name).to.be.a('string').and.to.not.be.empty;", "});", "", "", "pm.test(\"id and name are not null or undefined\", function () {", "    pm.expect(jsonData.id).to.not.be.null;", "    pm.expect(jsonData.id).to.not.be.undefined;", "    pm.expect(jsonData.name).to.not.be.null;", "    pm.expect(jsonData.name).to.not.be.undefined;", "});"]}}],
+      "request": {"method": "POST", "header": [], "url": {"raw": "{{Base_URL}}/1/boards/?name=FirstTestApi&key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "boards", ""], "query": [{"key": "name", "value": "FirstTestApi"}, {"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Get_Board",
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["var jsonData = pm.response.json();", "", "pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});", "", "", "pm.test(\"Response has id field\", function () {", "    pm.expect(jsonData.id).to.be.a('string').and.to.not.be.empty;", "});", "", "pm.test(\"Response has name field\", function () {", "    pm.expect(jsonData.name).to.be.a('string').and.to.not.be.empty;", "});", "", "pm.test(\"id and name are not null or undefined\", function () {", "    pm.expect(jsonData.id).to.not.be.null;", "    pm.expect(jsonData.id).to.not.be.undefined;", "    pm.expect(jsonData.name).to.not.be.null;", "    pm.expect(jsonData.name).to.not.be.undefined;", "});"]}}],
+      "request": {"method": "GET", "header": [{"key": "Accept", "value": "application/json"}], "url": {"raw": "{{Base_URL}}/1/boards/{{BoardID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "boards", "{{BoardID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Create_List",
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["var jsonData = pm.response.json();", "", "pm.collectionVariables.set(\"ListID\", jsonData.id);", "", "pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});", "", "", "", "pm.test(\"Response has id field\", function () {", "    pm.expect(jsonData.id).to.be.a('string').and.to.not.be.empty;", "});", "", "", "", "pm.test(\"Response has name field\", function () {", "    pm.expect(jsonData.name).to.be.a('string').and.to.not.be.empty;", "});", "", "", "pm.test(\"id and name are not null or undefined\", function () {", "    pm.expect(jsonData.id).to.not.be.null;", "    pm.expect(jsonData.id).to.not.be.undefined;", "    pm.expect(jsonData.name).to.not.be.null;", "    pm.expect(jsonData.name).to.not.be.undefined;", "});"]}}],
+      "request": {"method": "POST", "header": [], "body": {"mode": "raw", "raw": "", "options": {"raw": {"language": "json"}}}, "url": {"raw": "{{Base_URL}}/1/lists?name=Testing&idBoard={{BoardID}}&key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "lists"], "query": [{"key": "name", "value": "Testing"}, {"key": "idBoard", "value": "{{BoardID}}"}, {"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Get_List",
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["var jsonData = pm.response.json();", "", "pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});", "", "", "pm.test(\"Response has id field\", function () {", "    pm.expect(jsonData.id).to.be.a('string').and.to.not.be.empty;", "});", "", "pm.test(\"Response has name field\", function () {", "    pm.expect(jsonData.name).to.be.a('string').and.to.not.be.empty;", "});", "", "pm.test(\"id and name are not null or undefined\", function () {", "    pm.expect(jsonData.id).to.not.be.null;", "    pm.expect(jsonData.id).to.not.be.undefined;", "    pm.expect(jsonData.name).to.not.be.null;", "    pm.expect(jsonData.name).to.not.be.undefined;", "});"]}}],
+      "request": {"method": "GET", "header": [], "url": {"raw": "{{Base_URL}}/1/lists/{{ListID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "lists", "{{ListID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Create_Card",
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["var jsonData = pm.response.json();", "", "pm.collectionVariables.set(\"CardID\", jsonData.id);", "", "pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});", "", "", "", "pm.test(\"Response has id field\", function () {", "    pm.expect(jsonData.id).to.be.a('string').and.to.not.be.empty;", "});", "", "", "pm.test(\"Response has name field\", function () {", "    pm.expect(jsonData.name).to.be.a('string').and.to.not.be.empty;", "});", "", "", "pm.test(\"id and name are not null or undefined\", function () {", "    pm.expect(jsonData.id).to.not.be.null;", "    pm.expect(jsonData.id).to.not.be.undefined;", "    pm.expect(jsonData.name).to.not.be.null;", "    pm.expect(jsonData.name).to.not.be.undefined;", "});"]}}],
+      "request": {"method": "POST", "header": [{"key": "Accept", "value": "application/json"}], "body": {"mode": "raw", "raw": "", "options": {"raw": {"language": "json"}}}, "url": {"raw": "{{Base_URL}}/1/cards?idList={{ListID}}&key={{key}}&token={{token}}&name=MyAPIsTesting", "host": ["{{Base_URL}}"], "path": ["1", "cards"], "query": [{"key": "idList", "value": "{{ListID}}"}, {"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}, {"key": "name", "value": "MyAPIsTesting"}]}},
+      "response": []
+    },
+    {
+      "name": "Get_Card",
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["var jsonData = pm.response.json();", "", "pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});", "", "", "pm.test(\"Response has id field\", function () {", "    pm.expect(jsonData.id).to.be.a('string').and.to.not.be.empty;", "});", "", "pm.test(\"Response has name field\", function () {", "    pm.expect(jsonData.name).to.be.a('string').and.to.not.be.empty;", "});", "", "pm.test(\"id and name are not null or undefined\", function () {", "    pm.expect(jsonData.id).to.not.be.null;", "    pm.expect(jsonData.id).to.not.be.undefined;", "    pm.expect(jsonData.name).to.not.be.null;", "    pm.expect(jsonData.name).to.not.be.undefined;", "});"]}}],
+      "request": {"method": "GET", "header": [{"key": "Accept", "value": "application/json"}], "url": {"raw": "{{Base_URL}}/1/cards/{{CardID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "cards", "{{CardID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Create_Checklists",
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["var jsonData = pm.response.json();", "", "pm.collectionVariables.set(\"ChecklistID\", jsonData.id);", "", "pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});", "", "pm.test(\"Response has id field\", function () {", "    pm.expect(jsonData.id).to.be.a('string').and.to.not.be.empty;", "});", "", "pm.test(\"Response has name field\", function () {", "    pm.expect(jsonData.name).to.be.a('string').and.to.not.be.empty;", "});", "", "pm.test(\"id and name are not null or undefined\", function () {", "    pm.expect(jsonData.id).to.not.be.null;", "    pm.expect(jsonData.id).to.not.be.undefined;", "    pm.expect(jsonData.name).to.not.be.null;", "    pm.expect(jsonData.name).to.not.be.undefined;", "});"]}}],
+      "request": {"method": "POST", "header": [], "body": {"mode": "raw", "raw": "", "options": {"raw": {"language": "json"}}}, "url": {"raw": "{{Base_URL}}/1/checklists?idCard={{CardID}}&key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "checklists"], "query": [{"key": "idCard", "value": "{{CardID}}"}, {"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Get_Checklist",
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["var jsonData = pm.response.json();", "", "pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});", "", "pm.test(\"Response has id field\", function () {", "    pm.expect(jsonData.id).to.be.a('string').and.to.not.be.empty;", "});", "", "pm.test(\"Response has name field\", function () {", "    pm.expect(jsonData.name).to.be.a('string').and.to.not.be.empty;", "});", "", "pm.test(\"id and name are not null or undefined\", function () {", "    pm.expect(jsonData.id).to.not.be.null;", "    pm.expect(jsonData.id).to.not.be.undefined;", "    pm.expect(jsonData.name).to.not.be.null;", "    pm.expect(jsonData.name).to.not.be.undefined;", "});"]}}],
+      "request": {"method": "GET", "header": [], "url": {"raw": "{{Base_URL}}/1/checklists/{{ChecklistID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "checklists", "{{ChecklistID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Update_Board",
+      "request": {"method": "PUT", "header": [], "url": {"raw": "{{Base_URL}}/1/boards/{{BoardID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "boards", "{{BoardID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Update_List",
+      "request": {"method": "PUT", "header": [], "url": {"raw": "{{Base_URL}}/1/lists/{{ListID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "lists", "{{ListID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Update_Card",
+      "request": {"method": "PUT", "header": [{"key": "Accept", "value": "application/json"}], "url": {"raw": "{{Base_URL}}/1/cards/{{CardID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "cards", "{{CardID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Update_Checklist",
+      "request": {"method": "PUT", "header": [], "body": {"mode": "raw", "raw": "", "options": {"raw": {"language": "json"}}}, "url": {"raw": "{{Base_URL}}/1/checklists/{{ChecklistID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "checklists", "{{ChecklistID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Delete_Checklist",
+      "request": {"method": "DELETE", "header": [], "url": {"raw": "{{Base_URL}}/1/checklists/{{ChecklistID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "checklists", "{{ChecklistID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Delete_Card",
+      "request": {"method": "DELETE", "header": [], "url": {"raw": "{{Base_URL}}/1/cards/{{CardID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "cards", "{{CardID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    },
+    {
+      "name": "Archive_List",
+      "request": {"method": "PUT", "header": [], "body": {"mode": "raw", "raw": "", "options": {"raw": {"language": "json"}}}, "url": {"raw": "{{Base_URL}}/1/lists/{{ListID}}/closed?key={{key}}&token={{token}}&value=true", "host": ["{{Base_URL}}"], "path": ["1", "lists", "{{ListID}}", "closed"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}, {"key": "value", "value": "true"}]}},
+      "response": []
+    },
+    {
+      "name": "Unarchive_List",
+      "request": {"method": "PUT", "header": [], "body": {"mode": "raw", "raw": "", "options": {"raw": {"language": "json"}}}, "url": {"raw": "{{Base_URL}}/1/lists/{{ListID}}/closed?key={{key}}&token={{token}}&value=false", "host": ["{{Base_URL}}"], "path": ["1", "lists", "{{ListID}}", "closed"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}, {"key": "value", "value": "false"}]}},
+      "response": []
+    },
+    {
+      "name": "Delete_Board",
+      "request": {"method": "DELETE", "header": [], "url": {"raw": "{{Base_URL}}/1/boards/{{BoardID}}?key={{key}}&token={{token}}", "host": ["{{Base_URL}}"], "path": ["1", "boards", "{{BoardID}}"], "query": [{"key": "key", "value": "{{key}}"}, {"key": "token", "value": "{{token}}"}]}},
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "test",
+      "script": {"exec": ["pm.test(\"Response time is less than 1000ms\", function () {", "    pm.expect(pm.response.responseTime).to.be.below(1000);", "});"], "type": "text/javascript"}
+    }
+  ],
+  "variable": [
+    {"key": "BoardID", "value": ""},
+    {"key": "Base_URL", "value": "https://api.trello.com"},
+    {"key": "ListID", "value": ""},
+    {"key": "CardID", "value": ""},
+    {"key": "ChecklistID", "value": ""},
+    {"key": "key", "value": ""},
+    {"key": "token", "value": ""}
+  ]
+}
